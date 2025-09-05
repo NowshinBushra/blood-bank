@@ -1,2 +1,4 @@
 __pycache__/
 token.json
+bb_env/
+.env

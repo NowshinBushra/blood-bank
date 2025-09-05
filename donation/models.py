@@ -7,13 +7,13 @@ class Donation(models.Model):
     PENDING = 'Pending'
     ACCEPTED = 'Accepted'
     DONATED = 'Donated'
-    CANCELED = 'Canceled'
+    CANCELLED = 'Cancelled'
 
     STATUS_CHOICES = [
         (PENDING, 'Pending'),
         (ACCEPTED, 'Accepted'),
         (DONATED, 'Donated'),
-        (CANCELED, 'Canceled'),
+        (CANCELLED, 'Cancelled'),
     ]
     donor = models.ForeignKey(User, on_delete=models.CASCADE, related_name="donation")
     blood_request = models.ForeignKey(BloodRequest, on_delete=models.CASCADE, related_name="donation")
