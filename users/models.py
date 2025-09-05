@@ -23,6 +23,8 @@ class User(AbstractUser):
     last_donation_date = models.DateField(null=True, blank=True)
     is_available = models.BooleanField(default=True)
 
+    profile_image = models.ImageField(upload_to="profile_images/", blank=True, null=True)
+
     USERNAME_FIELD = 'email'  
     REQUIRED_FIELDS = []
 
@@ -30,3 +32,4 @@ class User(AbstractUser):
 
     def __str__(self):
         return self.email
+    
