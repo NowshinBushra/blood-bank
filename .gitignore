@@ -1,4 +1,4 @@
 __pycache__/
-token.json
+db.sqlite3
 bb_env/
 .env

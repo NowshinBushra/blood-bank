@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from users.managers import CustomUserManager
-
+from cloudinary.models import CloudinaryField
 # Create your models here.
 
 class User(AbstractUser):
@@ -23,7 +23,8 @@ class User(AbstractUser):
     last_donation_date = models.DateField(null=True, blank=True)
     is_available = models.BooleanField(default=True)
 
-    profile_image = models.ImageField(upload_to="profile_images/", blank=True, null=True)
+    # profile_image = models.ImageField(upload_to="profile_images/", blank=True, null=True)
+    user_image = CloudinaryField('user_image')
 
     USERNAME_FIELD = 'email'  
     REQUIRED_FIELDS = []

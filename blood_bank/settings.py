@@ -1,6 +1,7 @@
 from pathlib import Path
 from datetime import timedelta
 from decouple import config
+import cloudinary
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -13,19 +14,20 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-krrgmmhyc620ge)+((w#gqy!1ex#1lp-@=&d62+exu)z@n1rnw'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [".vercel.app", "127.0.0.1"]
 AUTH_USER_MODEL = 'users.User'
 
 # Application definition
 
 INSTALLED_APPS = [
+    "whitenoise.runserver_nostatic",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
-    'django.contrib.messages',
+    'django.contrib.messages', 
     'django.contrib.staticfiles',
     'drf_yasg',
     'django_filters',
@@ -42,6 +44,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     "debug_toolbar.middleware.DebugToolbarMiddleware",
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -67,7 +70,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'blood_bank.wsgi.application'
+WSGI_APPLICATION = 'blood_bank.wsgi.app'
 
 INTERNAL_IPS = [
     # ...
@@ -116,6 +119,17 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Configuration for Cloudinary Storage
+cloudinary.config( 
+    cloud_name = config('cloud_name'), 
+    api_key = config('cloudinary_api_key'), 
+    api_secret = config('api_secret'), # Click 'View API Keys' above to copy your API secret
+    secure=True
+)
+
+# Media Storage Setting
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
@@ -133,6 +147,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = BASE_DIR / "staticfiles"
+# STATIC_FILES_DIR = BASE_DIR / "static"
+STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
+
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
