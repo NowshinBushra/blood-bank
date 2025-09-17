@@ -11,7 +11,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-krrgmmhyc620ge)+((w#gqy!1ex#1lp-@=&d62+exu)z@n1rnw'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -120,12 +120,12 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 # Configuration for Cloudinary Storage
-cloudinary.config( 
-    cloud_name = config('cloud_name'), 
-    api_key = config('cloudinary_api_key'), 
-    api_secret = config('api_secret'), # Click 'View API Keys' above to copy your API secret
-    secure=True
-)
+# cloudinary.config( 
+#     cloud_name = config('cloud_name'), 
+#     api_key = config('cloudinary_api_key'), 
+#     api_secret = config('api_secret'), 
+#     secure=True
+# )
 
 # Media Storage Setting
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
