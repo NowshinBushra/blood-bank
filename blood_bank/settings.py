@@ -186,7 +186,7 @@ DJOSER = {
     'ACTIVATION_URL': 'activate/{uid}/{token}',
     'SEND_ACTIVATION_EMAIL': True,
     "PERMISSIONS": {
-        "user_create": ["rest_framework.permissions.IsAdminUser"],  
+        "user_create": ["rest_framework.permissions.AllowAny"],  
         "user_list":   ["rest_framework.permissions.IsAdminUser"],  
         "user":        ["rest_framework.permissions.IsAuthenticated"], 
     },
