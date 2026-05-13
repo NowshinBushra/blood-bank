@@ -4,24 +4,27 @@ from djoser.serializers import UserCreateSerializer as BaseUserCreateSerializer,
 
 
 class UserCreateSerializer(BaseUserCreateSerializer):
+    user_image = serializers.ImageField(required=False, allow_null=True)
+    blood_group = serializers.CharField(required=False, allow_null=True, allow_blank=True)
+
     class Meta(BaseUserCreateSerializer.Meta):
-        user_image = serializers.ImageField()
         fields = ['id', 'email', 'password', 'name', 'blood_group', 'user_image', 'address',
                    'phone_number', 'age', 'last_donation_date', 'is_available']
 
 
 class UserSerializer(BaseUserSerializer):
+    user_image = serializers.ImageField(required=False, allow_null=True)
+
     class Meta(BaseUserSerializer.Meta):
         ref_name = 'CustomUser'
-        user_image = serializers.ImageField()
         fields = ['id', 'email', 'name', 'blood_group', 'user_image', 'address',
                    'phone_number', 'age', 'last_donation_date', 'is_available']
 
 
 class DonorSerializer(serializers.ModelSerializer):
+    user_image = serializers.ImageField(required=False, allow_null=True)
+
     class Meta:
-        
-        user_image = serializers.ImageField()
         model = User
         fields = ["id", "name", "email", "phone_number",
                    "blood_group", 'user_image', "last_donation_date", "is_available"]
