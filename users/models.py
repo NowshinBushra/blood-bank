@@ -19,12 +19,12 @@ class User(AbstractUser):
     phone_number = models.CharField(max_length=15, blank=True, null=True)
     age = models.PositiveIntegerField(null=True, blank=True)
 
-    blood_group = models.CharField(max_length=3, choices=BLOOD_GROUP_CHOICES)
+    blood_group = models.CharField(max_length=3, choices=BLOOD_GROUP_CHOICES, blank=True, null=True)
     last_donation_date = models.DateField(null=True, blank=True)
     is_available = models.BooleanField(default=True)
 
     # profile_image = models.ImageField(upload_to="profile_images/", blank=True, null=True)
-    user_image = CloudinaryField('user_image')
+    user_image = CloudinaryField('user_image', blank=True, null=True)
 
     USERNAME_FIELD = 'email'  
     REQUIRED_FIELDS = []
