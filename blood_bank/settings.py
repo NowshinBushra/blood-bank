@@ -181,6 +181,9 @@ SIMPLE_JWT = {
    "ACCESS_TOKEN_LIFETIME": timedelta(days=100),
 }
 
+DOMAIN = config('DOMAIN', default='localhost:5173')
+SITE_NAME = config('SITE_NAME', default='Blood Bank')
+
 DJOSER = {
     'PASSWORD_RESET_CONFIRM_URL': 'password/reset/confirm/{uid}/{token}',
     'ACTIVATION_URL': 'activate/{uid}/{token}',
