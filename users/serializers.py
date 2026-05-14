@@ -8,7 +8,7 @@ class UserCreateSerializer(BaseUserCreateSerializer):
     blood_group = serializers.CharField(required=False, allow_null=True, allow_blank=True)
 
     class Meta(BaseUserCreateSerializer.Meta):
-        fields = ['id', 'email', 'password', 'name', 'blood_group', 'user_image', 'address',
+        fields = ['id', 'email', 'password', 're_password', 'name', 'blood_group', 'user_image', 'address',
                    'phone_number', 'age', 'last_donation_date', 'is_available']
 
 
