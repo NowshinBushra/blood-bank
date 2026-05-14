@@ -19,6 +19,10 @@ DEBUG = False
 ALLOWED_HOSTS = [".vercel.app", "127.0.0.1"]
 AUTH_USER_MODEL = 'users.User'
 
+CSRF_TRUSTED_ORIGINS = [
+    "https://blood-bank-frontend-weld.vercel.app",
+]
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -49,7 +53,6 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -77,6 +80,7 @@ WSGI_APPLICATION = 'blood_bank.wsgi.app'
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:5173',
+    'https://blood-bank-frontend-weld.vercel.app',
 ]
 
 INTERNAL_IPS = [
@@ -181,7 +185,7 @@ SIMPLE_JWT = {
    "ACCESS_TOKEN_LIFETIME": timedelta(days=100),
 }
 
-DOMAIN = config('DOMAIN', default='localhost:5173')
+DOMAIN = config('DOMAIN', default='blood-bank-frontend-weld.vercel.app')
 SITE_NAME = config('SITE_NAME', default='Blood Bank')
 
 DJOSER = {
@@ -219,3 +223,4 @@ EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 
 # DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+FRONTEND_URL='https://blood-bank-frontend-weld.vercel.app'
